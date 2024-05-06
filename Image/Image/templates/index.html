@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AI_Image</title>
+        {% load static %}
+        <style>
+            .dynamic-text-shadow {
+                text-shadow: .1em .1em 0 hsl(200 50% 30%);
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+              
+            html {
+                block-size: 100%;
+                background: #75c9b7; /*#4ABDAC;*/
+                color: hsl(200 50% 90%);
+            }
+            header{
+                text-align:center;
+            }
+              
+            h1 {
+                font-size: 4rem;
+                font-weight: 900;
+                line-height: 1.1;
+            }
+            header {
+                display: grid;
+                gap: 1ch;
+              } 
+            @media (max-width: 480px) {
+                h1 {
+                  font-size: 2rem;
+                }
+            }
+            p{
+                text-align:justify;
+                color:#393939;
+                font-family:Sans-serif,Garamond;
+                font-size:20px;
+                padding:20px;
+                text-shadow: 2px 2px 4px #F0F8FF;
+            }
+            body {
+                min-block-size: 100%;
+                font-family: 'Fugaz One', cursive;
+            }
+            textarea {
+        		display: block;
+        		margin-left: auto;
+        		margin-right: auto;
+				width:95%;
+				resize: vertical;
+				padding:15px;
+				border-radius:15px;
+				border:0;
+				box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+				height:130px;
+				font-family:Sans-serif,Garamond;
+				font-size:15px;
+                background-color:#ffffff;
+			}
+            ::placeholder { 
+                color: #111111;
+                opacity: 1;
+                font-size:20px;
+              }
+            .button-24 {
+                background: #FF4742;
+                border: 1px solid #FF4742;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+                box-sizing: border-box;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-block;
+                font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+                font-size: 16px;
+                font-weight: 800;
+                line-height: 16px;
+                min-height: 40px;
+                outline: 0;
+                padding: 5px 14px;
+                text-align: center;
+                text-rendering: geometricprecision;
+                text-transform: none;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                vertical-align: middle;
+            }
+              
+            .button-24:hover,
+            .button-24:active {
+                background-color: initial;
+                background-position: 0 0;
+                color: #FF4742;
+            }
+              
+            .button-24:active {
+                opacity: .5;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0 4px;
+              }
+              
+              /* Create two equal columns that sits next to each other */
+              .column {
+                flex: 50%;
+                padding: 0 4px;
+              }
+              
+              .column img {
+                margin-top: 8px;
+                vertical-align: middle;
+              }
+        </style>
+    </head>
+    <body>
+        <header>
+        <h1 style = "color:	#FFFAFA;" class="dynamic-text-shadow"><code>Generate Image with your Imaginations</code></h1>     
+        </header>
+        <br>
+        <p>Welcome to a new AI system that can create realistic images and art from a description in natural language.can create original, realistic images and art from a
+            text description. It can combine concepts, attributes, and styles.</p>
+        <h1 style = "color:	#F7B733; font-size:30px; padding-left:35px;padding-bottom:10px;" class="dynamic-text-shadow"><code>Enter the sentence to generate an Image....</code></h1>
+        <form action='' method='POST'>
+            {% csrf_token %}
+            <textarea placeholder="Your Imagations..." name='topic' id ="myInput" style="color:#111111;"></textarea>
+            <br> <br>
+            <button class="button-24" role="button" style = " display: block; margin-left: auto;margin-right: auto;">Generate</button>
+        </form> 
+        <p>{{valid}}</p>
+            {% if check%}
+            <div class="row" style = "padding-left: 10%;padding-right: 20%">
+                <div class="column">
+                    <a href = "{{url1}}"><img src="{{url1 | safe}}"></a>
+                    <a href = "{{url2}}"><img src="{{url3 | safe}}"></a>
+                    <a href = "{{url4}}"><img src="{{url4 | safe}}"></a>
+                    <a href = "{{url3}}"><img src="{{url3 | safe}}"></a>
+                    <a href = "{{url5}}"><img src="{{url5 | safe}}"></a>
+                    <a href = "{{url6}}"><img src="{{url6 | safe}}"></a>
+                </div>
+            </div>
+            {% endif %}
+            <script>
+                var input = document.getElementById("myInput");
+                input.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  document.getElementById("myBtn").click();
+                }
+                });
+            </script>
+    </body>
+</html>
